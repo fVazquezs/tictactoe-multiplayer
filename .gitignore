@@ -9,7 +9,7 @@ Explore
 @fVazquezs 
 fVazquezs
 /
-TicTacToeAI
+TicTacToeMultiplayer
 1
 0
 0
@@ -22,7 +22,7 @@ Wiki
 Security
 Insights
 Settings
-TicTacToeAI/.gitignore
+TicTacToeMultiplayer/.gitignore
 @fVazquezs
 fVazquezs Adding base files
 Latest commit cda80f6 on 25 Oct 2020

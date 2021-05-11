@@ -9,7 +9,6 @@ public class TitleScreen : MonoBehaviour
 {
     public InputField ServerAddressField;
 
-    
     public void StartHost()
     {
         GameModeController.Instance.StartHost();

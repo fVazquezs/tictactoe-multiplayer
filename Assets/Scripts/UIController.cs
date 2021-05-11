@@ -8,13 +8,14 @@ public enum EUIScreen
 {
     Title,
     Lobby,
-    Game
+    Game,
+    EndGame
 }
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance { get; private set; }
-    
+
     [Serializable]
     public struct ScreenData
     {
@@ -23,7 +24,7 @@ public class UIController : MonoBehaviour
     }
 
     public List<ScreenData> ScreenDatas;
-    
+
     private Dictionary<EUIScreen, GameObject> _screens = new Dictionary<EUIScreen, GameObject>();
     private GameObject _activeScreen;
 
@@ -33,6 +34,10 @@ public class UIController : MonoBehaviour
         foreach (var screenData in ScreenDatas)
         {
             _screens.Add(screenData.Screen, screenData.RootObject);
+            if (screenData.RootObject != null)
+            {
+                screenData.RootObject.SetActive(false);
+            }
         }
     }
 
@@ -40,16 +45,30 @@ public class UIController : MonoBehaviour
     {
         GameModeController.Instance.OnHostStarted += OnHostStarted;
         GameModeController.Instance.OnClientStarted += OnClientStarted;
+        GameModeController.Instance.OnClientConnected += OnClientConnected;
+        GameModeController.Instance.OnGameEnd += OnGameEnd;
+        
+        GoToScreen(EUIScreen.Title);
+    }
+
+    private void OnGameEnd(EBoardSymbol victor)
+    {
+        GoToScreen(EUIScreen.EndGame);
     }
 
     private void OnHostStarted()
     {
         GoToScreen(EUIScreen.Lobby);
-    } 
-    
+    }
+
     private void OnClientStarted()
     {
-        GoToScreen(EUIScreen.Lobby);
+        GoToScreen(EUIScreen.Game);
+    }
+
+    private void OnClientConnected()
+    {
+        GoToScreen(EUIScreen.Game);
     }
 
     public void GoToScreen(EUIScreen screen)
@@ -60,9 +79,12 @@ public class UIController : MonoBehaviour
             {
                 _activeScreen.SetActive(false);
             }
-            
-            rootObject.SetActive(true);
+
             _activeScreen = rootObject;
+            if (rootObject != null)
+            {
+                rootObject.SetActive(true);
+            }
         }
     }
 }

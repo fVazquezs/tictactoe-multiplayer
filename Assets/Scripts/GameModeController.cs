@@ -12,7 +12,11 @@ public class GameModeController : MonoBehaviour
 
     public event Action OnHostStarted;
     public event Action OnClientStarted;
+    public event Action OnClientConnected;
+    public event Action<EBoardSymbol> OnGameEnd; 
     
+    public bool IsGameOver { get; private set; }
+    public EBoardSymbol GameVictor { get; private set; }
     private void Awake()
     {
         Instance = this;
@@ -20,8 +24,17 @@ public class GameModeController : MonoBehaviour
     
     public void StartHost()
     {
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.StartHost();
         OnHostStarted?.Invoke();
+    }
+
+    private void OnClientConnectedCallback(ulong clientId)
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            OnClientConnected?.Invoke();
+        } 
     }
 
     public void StartClient(string serverAddress)
@@ -32,5 +45,11 @@ public class GameModeController : MonoBehaviour
       
         OnClientStarted?.Invoke();
     }
-    
+
+    public void DispatchGameEnd(EBoardSymbol victor)
+    {
+        IsGameOver = true;
+        GameVictor = victor;
+        OnGameEnd?.Invoke(victor);
+    }
 }

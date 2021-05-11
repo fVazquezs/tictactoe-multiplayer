@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7064637589819746605}
   - component: {fileID: 8711415701380047199}
+  - component: {fileID: 5292358540154938051}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -48,3 +49,18 @@ MonoBehaviour:
   PrefabHashGenerator: Player
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
+--- !u!114 &5292358540154938051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476199882046316419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73000d3a028850d4cb979ae6c8904f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickingMask:
+    serializedVersion: 2
+    m_Bits: 8

@@ -8,7 +8,13 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="GameModeController.cs" t="Include" />
+          <e p="Gameplay" t="Include">
+            <e p="BoardController.cs" t="Include" />
+            <e p="Slot.cs" t="Include" />
+          </e>
+          <e p="NetworkPlayer.cs" t="Include" />
           <e p="Screens" t="Include">
+            <e p="EndGameScreen.cs" t="Include" />
             <e p="TitleScreen.cs" t="Include" />
           </e>
           <e p="UIController.cs" t="Include" />
