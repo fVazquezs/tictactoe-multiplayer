@@ -12,4 +12,9 @@ public class EndGameScreen : MonoBehaviour
     {
         VictorLabel.text = GameModeController.Instance.GameVictor.ToString();
     }
+
+    public void GoToMenu()
+    {
+        UIController.Instance.GoToScreen(EUIScreen.Title);
+    }
 }

@@ -11,7 +11,7 @@ public class Slot : MonoBehaviour
     public GameObject CircleRoot;
     public GameObject CrossRoot;
 
-    private void Awake()
+    private void Start()
     {
         BoardController.Instance.RegisterSlot(this);
     }

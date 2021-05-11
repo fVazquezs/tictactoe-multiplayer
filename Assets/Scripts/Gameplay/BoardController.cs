@@ -62,14 +62,91 @@ public class BoardController : MonoBehaviour
 
     private bool CheckIsGameOver(out EBoardSymbol victor)
     {
-        if (_board[0, 0] == _board[0, 1] && _board[0, 0] == _board[0, 2] && _board[0, 0] != EBoardSymbol.None)
+        bool hasAvailableSlot = false;
+        //horizontal
+        for (int line = 0; line < 3; line++)
+        {
+            if (_board[line, 0] == EBoardSymbol.None)
+            {
+                hasAvailableSlot = true;
+                continue;
+            }
+
+            int symbolCount = 0;
+            for (int c = 0; c < 3; c++)
+            {
+                if (_board[line, c] == _board[line, 0])
+                {
+                    symbolCount++;
+                }
+
+                if (_board[line, c] == EBoardSymbol.None)
+                {
+                    hasAvailableSlot = true;
+                }
+            }
+
+            if (symbolCount == 3)
+            {
+                victor = _board[line, 0];
+                return true;
+            }
+        }
+
+        //vertical
+        for (int column = 0; column < 3; column++)
+        {
+            if (_board[0, column] == EBoardSymbol.None)
+            {
+                continue;
+            }
+
+            int symbolCount = 0;
+            for (int l = 0; l < 3; l++)
+            {
+                if (_board[l, column] == _board[0, column])
+                {
+                    symbolCount++;
+                }
+            }
+
+            if (symbolCount == 3)
+            {
+                victor = _board[0, column];
+                return true;
+            }
+        }
+
+        //diagonal
+        int diagonalCount1 = 0;
+        int diagonalCount2 = 0;
+        for (int index = 0; index < 3; index++)
+        {
+            if (_board[index, index] == _board[0, 0] && _board[0, 0] != EBoardSymbol.None)
+            {
+                diagonalCount1++;
+            }
+
+            if (_board[index, 3 - index - 1] == _board[0, 3 - 1] &&
+                _board[0, 3 - 1] != EBoardSymbol.None)
+            {
+                diagonalCount2++;
+            }
+        }
+
+        if (diagonalCount1 == 3)
         {
             victor = _board[0, 0];
             return true;
         }
+        if (diagonalCount2 == 3)
+        {
+            victor = _board[0, 3 - 1];
+            return true;
+        }
 
         victor = EBoardSymbol.None;
-        return false;
+        return !hasAvailableSlot;
     }
 
     public void UpdateBoardVisuals(int line, int column, EBoardSymbol symbol)
