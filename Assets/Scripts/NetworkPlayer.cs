@@ -26,7 +26,7 @@ public class NetworkPlayer : NetworkBehaviour
             BoardController.Instance.OnGameEnd += OnGameEnd;
         }
     }
-    
+
     private void Update()
     {
         if (IsOwner)
@@ -47,15 +47,32 @@ public class NetworkPlayer : NetworkBehaviour
             }
         }
     }
-    
-  private void OnGameEnd(EBoardSymbol victor)
+
+    private void OnGameEnd(EBoardSymbol victor)
     {
         OnGameEndClientRpc(victor);
+
+        // if (IsServer)
+        // {
+        //     NetworkManager.Singleton.OnClientDisconnectCallback += obj => NetworkManager.Singleton.Shutdown();
+        // }
+        // else
+        // {
+        // }
+        StartCoroutine(DisconnectClient());
     }
 
     private void UpdateBoard(int line, int column, EBoardSymbol symbol)
     {
-        UpdateBoardClientRpc(line, column, symbol);
+        try
+        {
+            UpdateBoardClientRpc(line, column, symbol);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     [ServerRpc]
@@ -69,10 +86,27 @@ public class NetworkPlayer : NetworkBehaviour
     {
         BoardController.Instance.UpdateBoardVisuals(line, column, symbol);
     }
-    
+
     [ClientRpc]
     public void OnGameEndClientRpc(EBoardSymbol victor)
     {
         GameModeController.Instance.DispatchGameEnd(victor);
+    }
+
+    IEnumerator DisconnectClient()
+    {
+        yield return new WaitForSeconds(1);
+        
+        NetworkManager.Singleton.DisconnectClient(OwnerClientId);
+        StartCoroutine(ShutdownServer());
+
+    }
+
+    IEnumerator ShutdownServer()
+    {
+        yield return new WaitForSeconds(2);
+
+
+        NetworkManager.Singleton.Shutdown();
     }
 }

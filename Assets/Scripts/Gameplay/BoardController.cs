@@ -17,7 +17,7 @@ public class BoardController : MonoBehaviour
     private EBoardSymbol _currentVictor;
     private ulong _currentPlayerId => _playerIds[_currentPlayerIndex];
 
-    private readonly List<ulong> _playerIds = new List<ulong>();
+    private List<ulong> _playerIds = new List<ulong>();
 
     private Slot[,] _slots = new Slot[3, 3];
     private EBoardSymbol[,] _board = new EBoardSymbol[3, 3];
@@ -25,6 +25,20 @@ public class BoardController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        GameModeController.Instance.OnGameEnd += Clear;
+    }
+
+    private void Clear(EBoardSymbol obj)
+    {
+        _currentPlayerIndex = 0;
+        _playerIds = new List<ulong>();
+        _isGameOver = false;
+        _slots = new Slot[3, 3];
+        _board = new EBoardSymbol[3, 3];
     }
 
     public void RegisterSlot(Slot slot)
@@ -40,6 +54,8 @@ public class BoardController : MonoBehaviour
 
     public void MakePlay(ulong clientId, int line, int column)
     {
+        Debug.LogFormat("clientid {0}", clientId);
+        _playerIds.ForEach(id => Debug.Log(id));
         if (_isGameOver) return;
         if (clientId != _currentPlayerId) return;
         if (_board[line, column] != EBoardSymbol.None) return;
@@ -53,7 +69,7 @@ public class BoardController : MonoBehaviour
         {
             _isGameOver = true;
             _gameVictor = currentVictor;
-            
+
             OnGameEnd?.Invoke(_gameVictor);
         }
 
@@ -139,6 +155,7 @@ public class BoardController : MonoBehaviour
             victor = _board[0, 0];
             return true;
         }
+
         if (diagonalCount2 == 3)
         {
             victor = _board[0, 3 - 1];

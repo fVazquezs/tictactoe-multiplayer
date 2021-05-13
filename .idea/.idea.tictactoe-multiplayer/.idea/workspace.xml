@@ -12,10 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="48ec64ac-2e5a-472f-896d-cd7771d1feab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.tictactoe-multiplayer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.tictactoe-multiplayer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameModeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameModeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/BoardController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Slot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Slot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Screens/EndGameScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Screens/EndGameScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NetworkPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NetworkPlayer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,17 +27,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Screens/EndGameScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.multiplayer.mlapi@3e3aef6aa0/Runtime/Core/NetworkManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.multiplayer.mlapi@3e3aef6aa0/Runtime/Logging/NetworkLog.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/NetworkPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameModeController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BoardController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Screens/TitleScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Screens/EndGameScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Slot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Screens/EndGameScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameModeController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BoardController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NetworkPlayer.cs" />
       </list>
     </option>
   </component>
@@ -99,7 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620655040655</updated>
-      <workItem from="1620655045782" duration="15135000" />
+      <workItem from="1620655045782" duration="21421000" />
     </task>
     <servers />
   </component>

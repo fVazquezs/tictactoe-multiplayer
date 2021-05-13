@@ -13,8 +13,8 @@ public class GameModeController : MonoBehaviour
     public event Action OnHostStarted;
     public event Action OnClientStarted;
     public event Action OnClientConnected;
-    public event Action<EBoardSymbol> OnGameEnd; 
-    
+    public event Action<EBoardSymbol> OnGameEnd;
+
     public bool IsGameOver { get; private set; }
     public EBoardSymbol GameVictor { get; private set; }
     private void Awake()

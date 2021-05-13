@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Slot : MonoBehaviour
@@ -14,7 +15,15 @@ public class Slot : MonoBehaviour
     private void Start()
     {
         BoardController.Instance.RegisterSlot(this);
+        GameModeController.Instance.OnGameEnd += OnGameEnd;
     }
+
+    private void OnGameEnd(EBoardSymbol obj)
+    {
+        CrossRoot.SetActive(false);
+        CircleRoot.SetActive(false);
+    }
+
 
     public void SetSymbol(EBoardSymbol symbol)
     {
