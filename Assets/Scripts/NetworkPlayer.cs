@@ -51,15 +51,7 @@ public class NetworkPlayer : NetworkBehaviour
     private void OnGameEnd(EBoardSymbol victor)
     {
         OnGameEndClientRpc(victor);
-
-        // if (IsServer)
-        // {
-        //     NetworkManager.Singleton.OnClientDisconnectCallback += obj => NetworkManager.Singleton.Shutdown();
-        // }
-        // else
-        // {
-        // }
-        StartCoroutine(DisconnectClient());
+        StartCoroutine(ShutdownServer());
     }
 
     private void UpdateBoard(int line, int column, EBoardSymbol symbol)
@@ -93,18 +85,9 @@ public class NetworkPlayer : NetworkBehaviour
         GameModeController.Instance.DispatchGameEnd(victor);
     }
 
-    IEnumerator DisconnectClient()
-    {
-        yield return new WaitForSeconds(1);
-        
-        NetworkManager.Singleton.DisconnectClient(OwnerClientId);
-        StartCoroutine(ShutdownServer());
-
-    }
-
     IEnumerator ShutdownServer()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
 
         NetworkManager.Singleton.Shutdown();

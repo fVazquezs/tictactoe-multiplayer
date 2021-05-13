@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameScreen : MonoBehaviour
@@ -15,6 +16,7 @@ public class EndGameScreen : MonoBehaviour
 
     public void GoToMenu()
     {
-        UIController.Instance.GoToScreen(EUIScreen.Title);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

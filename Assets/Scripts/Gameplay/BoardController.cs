@@ -37,8 +37,18 @@ public class BoardController : MonoBehaviour
         _currentPlayerIndex = 0;
         _playerIds = new List<ulong>();
         _isGameOver = false;
-        _slots = new Slot[3, 3];
-        _board = new EBoardSymbol[3, 3];
+        ResetBoard();
+    }
+
+    private void ResetBoard()
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                _board[x, y] = EBoardSymbol.None;
+            }
+        }
     }
 
     public void RegisterSlot(Slot slot)
